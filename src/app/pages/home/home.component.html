@@ -1,11 +1,4 @@
-<app-slider [items]="movies"></app-slider>
-<h2>Tending</h2>
-<div class="container">
-  <div class="row">
-   <div class="col-3"><movie-item></movie-item></div>
-   <div class="col-3"><movie-item></movie-item></div>
-   <div class="col-3"><movie-item></movie-item></div>
-   <div class="col-3"><movie-item></movie-item></div>
-
-  </div>
-</div>
+<app-slider [items]="popularMovies"></app-slider>
+<items-banner [items]="upcomingMovies" title="Upcoming Movie"></items-banner>
+<items-banner [items]="topratedMovies" title="Top Rated Movie"></items-banner>
+<items-banner></items-banner>

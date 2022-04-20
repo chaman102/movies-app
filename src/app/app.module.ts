@@ -11,7 +11,7 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemsBannerComponent } from './components/items-banner/items-banner.component';
-import { MovieItemComponent } from './components/movie-item/movie-item.component';
+import { ItemComponent } from './components/item/item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +22,7 @@ import { MovieItemComponent } from './components/movie-item/movie-item.component
     NotfoundComponent,
     SliderComponent,
     ItemsBannerComponent,
-    MovieItemComponent
+    ItemComponent
   ],
   imports: [
     BrowserModule,

@@ -49,16 +49,16 @@
   transition: all .35s ease-in-out;
 }
 .video-thumb .video-image .hd {
-  height: 20px;
+
   line-height: 20px;
   display: inline-block;
   color: #fff;
   font-size: 13px;
-  padding-left: 7px;
+  padding: 5px;
   border: 1px solid #fff;
   position: absolute;
   left: 10px;
-  bottom: 20px;
+  bottom: 10px;
   z-index: 1;
   opacity: 0;
   -webkit-transition: all .35s ease-in-out;
