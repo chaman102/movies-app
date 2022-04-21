@@ -1,5 +1,4 @@
 <ng-container *ngIf="itemData">
-  <a routerLink="{{'/movie/'+ itemData.id}}">
   <div class="video-thumb light">
     <figure class="video-image"> <a href="#">
       <img class="img-fluid" src="{{imagesSizes.small+itemData.poster_path}}" alt="Image"></a>
@@ -10,13 +9,12 @@
         </svg>
         <b>{{ itemData.vote_average }}</b> </div>
       <!-- end circle-rate -->
-      <div class="hd">{{itemData.release_date | date:('dd/M/Y')}}</div>
+      <div class="hd">{{itemData.first_air_date | date:('dd/M/Y')}}</div>
       <!-- end hd -->
     </figure>
 
     <!-- end video-content -->
   </div>
-</a>
 </ng-container>
   <!-- end video-thumb -->
 

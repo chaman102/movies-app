@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { Movie, MovieDto } from '../../models/movie';
+import { Tvshow, TvshowDto } from '../..//models/tvshow';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,6 +11,8 @@ export class HomeComponent implements OnInit {
   popularMovies: Movie[] = [];
   upcomingMovies: Movie[] = [];
   topratedMovies: Movie[] = [];
+  lastestTv: Tvshow[] = [];
+  isBanner:boolean=false;
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
@@ -25,6 +28,10 @@ export class HomeComponent implements OnInit {
     this.moviesService.getMovies('top_rated').subscribe((movies) => {
       this.topratedMovies = movies;
       //console.log('Top rated', this.topratedMovies);
+    });
+    this.moviesService.searchTvs('popular').subscribe((movies) => {
+      this.lastestTv = movies;
+      //console.log('Top rated', this.lastestTv);
     });
   }
 }

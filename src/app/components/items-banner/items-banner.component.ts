@@ -11,7 +11,7 @@ export class ItemsBannerComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('items', this.items)
+   // console.log('items', this.items)
   }
 
 }
