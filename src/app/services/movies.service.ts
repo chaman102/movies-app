@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MovieDto,Movie } from '../models/movie';
-import { TvshowDto } from '../models/tvshow';
+import { TvshowDto,Tvshow } from '../models/tvshow';
 import { switchMap } from 'rxjs/operators';
 import { COMMON } from '../constants/common';
 import { of } from 'rxjs';
@@ -33,6 +33,9 @@ export class MoviesService {
   }
   getMovie(id: string) {
     return this.http.get<Movie>(`${this.BaseUrl}/movie/${id}?api_key=${this.apiKey}`);
+  }
+  getTv(id: string) {
+    return this.http.get<Tvshow>(`${this.BaseUrl}/tv/${id}?api_key=${this.apiKey}`);
   }
   searchTvs(type:string='popular',count:number=COMMON.rows) {
     return this.http.get<TvshowDto>(
