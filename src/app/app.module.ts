@@ -13,12 +13,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemsBannerComponent } from './components/items-banner/items-banner.component';
 import { ItemComponent } from './components/item/item.component';
 import { PaginatorModule } from 'primeng/paginator';
+import {ImageModule} from 'primeng/image';
 import { TabViewModule } from 'primeng/tabview';
 import { ItemsBannerTvComponent } from './components/items-banner-tv/items-banner-tv.component';
 import { ItemsTvComponent } from './components/items-tv/items-tv.component';
 import { TvshowsComponent } from './pages/tvshows/tvshows.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { TvshowComponent } from './pages/tvshow/tvshow.component';
+import { VideoEmbedComponent } from './components/video-embed/video-embed.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +37,7 @@ import { TvshowComponent } from './pages/tvshow/tvshow.component';
     TvshowsComponent,
     MovieComponent,
     TvshowComponent,
+    VideoEmbedComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { TvshowComponent } from './pages/tvshow/tvshow.component';
     BrowserAnimationsModule,
     PaginatorModule,
     TabViewModule,
+    ImageModule,
     AppRoutingModule,
   ],
   providers: [],
