@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Tvshow } from 'src/app/models/tvshow';
+import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from '../../services/movies.service';
 import { COMMON } from '../../constants/common';
 @Component({
@@ -9,10 +10,24 @@ import { COMMON } from '../../constants/common';
 })
 export class TvshowsComponent implements OnInit {
   movies: Tvshow[] = [];
-  constructor(private moviesservice: MoviesService) { }
+  genresName: any;
+  genreId: string | null = null;
+  constructor( private route: ActivatedRoute,private moviesservice: MoviesService) { }
 
   ngOnInit(): void {
-    this.getPageTvshows(1,COMMON.rows);
+    this.route.params.subscribe(({ genreId }) => {
+      if (genreId) {
+        this.genreId = genreId;
+        this.route.queryParams.subscribe((params) => {
+        this.genresName = params['name'];
+        });
+        this.getTvByGenre(genreId, 1, COMMON.rows);
+      } else {
+        this.genresName="Movies"
+        this.getPageTvshows(1, COMMON.rows);
+      }
+    });
+
   }
   getPageTvshows(page:number=1,count:number)
 {
@@ -20,12 +35,19 @@ export class TvshowsComponent implements OnInit {
     this.movies =movies;
   });
 }
+getTvByGenre(genreId: string, page: number = 1, count: number) {
+  this.moviesservice
+    .getTvByGenre(genreId, page, count)
+    .subscribe((movies) => {
+      this.movies = movies;
+    });
+}
 paginate(event:any) {
-  this.getPageTvshows(event.page+1,COMMON.rows)
-  //event.first = Index of the first record
-  //event.rows = Number of rows to display in new page
-  //event.page = Index of the new page
-  //event.pageCount = Total number of pages
- // console.log('event', event)
+  const pageNumber = event.page + 1;
+    if (this.genreId) {
+      this.getTvByGenre(this.genreId, pageNumber, COMMON.rows);
+    } else {
+      this.getPageTvshows(pageNumber, COMMON.rows);
+    }
 }
 }

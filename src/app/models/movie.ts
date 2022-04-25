@@ -39,15 +39,17 @@ export interface MovieVideo {
   key: string;
 }
 export interface MovieImages {
-backdrops: {
+  backdrops: {
     file_path: string;
   }[];
 }
 export interface MovieCredits {
   cast: {
-      file_path: string;
-    }[],
-    crew: {
-      file_path: string;
-    }[];
-  }
+    name: string;
+    profile_path:string;
+  }[];
+  crew: {
+    name: string;
+    profile_path:string;
+  }[];
+}

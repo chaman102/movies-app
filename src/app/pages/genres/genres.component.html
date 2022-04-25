@@ -1,0 +1,14 @@
+<div class="container">
+  <h2 class="my-4 ">Genres Movies</h2>
+  <div class="row g-2 mt-3">
+    <div *ngFor="let genre of genres" class="col-lg-2 col-12 col-sm-6 col-md-4">
+      <a class="btn btn-warning btn-sm w-100" routerLink="{{'/movies/genres/'+genre.id}}" [queryParams]="{ name: genre.name}" href="">{{genre.name }}</a>
+    </div>
+  </div>
+  <h2 class="my-4 ">Genres Tv</h2>
+  <div class="row g-2 mt-3">
+    <div *ngFor="let genre of genrestv" class="col-lg-2 col-12 col-sm-6 col-md-4">
+      <a class="btn btn-warning btn-sm w-100" routerLink="{{'/tvshows/genres/'+genre.id}}" [queryParams]="{ name: genre.name}" href="">{{genre.name }}</a>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,8 @@ import { TvshowDto,Tvshow } from '../models/tvshow';
 import { switchMap } from 'rxjs/operators';
 import { COMMON } from '../constants/common';
 import { of } from 'rxjs';
+import { GenresDto } from '../models/genres';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -25,6 +27,20 @@ export class MoviesService {
         return of(res.results);
       }));
   }
+  getMoviesGenres() {
+    return this.http.get<GenresDto>(`${this.BaseUrl}/genre/movie/list?api_key=${this.apiKey}`).pipe(
+      switchMap((res) => {
+        return of(res.genres);
+      })
+    );
+  }
+  getTvGenres() {
+    return this.http.get<GenresDto>(`${this.BaseUrl}/genre/tv/list?api_key=${this.apiKey}`).pipe(
+      switchMap((res) => {
+        return of(res.genres);
+      })
+    );
+  }
   getMovieImages(id: string) {
     return this.http.get<MovieImages>(`${this.BaseUrl}/movie/${id}/images?api_key=${this.apiKey}`);
   }
@@ -43,6 +59,18 @@ export class MoviesService {
         return of(res.results.slice(0,count));
       }));
   }
+  getMoviesByGenre(genreId:string,page:number=1,count:number=COMMON.rows) {
+    return this.http.get<MovieDto>(
+      `${this.BaseUrl}/discover/movie?with_genres=${genreId}&page=${page}&api_key=${this.apiKey}`).pipe(switchMap(res=>{
+        return of(res.results.slice(0,count));
+      }));
+  }
+  getTvByGenre(genreId:string,page:number=1,count:number=COMMON.rows) {
+    return this.http.get<TvshowDto>(
+      `${this.BaseUrl}/discover/tv?with_genres=${genreId}&page=${page}&api_key=${this.apiKey}`).pipe(switchMap(res=>{
+        return of(res.results.slice(0,count));
+      }));
+  }
   getMovie(id: string) {
     return this.http.get<Movie>(`${this.BaseUrl}/movie/${id}?api_key=${this.apiKey}`);
   }
@@ -53,7 +81,7 @@ export class MoviesService {
   searchTvs(type:string='popular',count:number=COMMON.rows) {
     return this.http.get<TvshowDto>(
       `${this.BaseUrl}/tv/${type}?api_key=${this.apiKey}`).pipe(switchMap(res=>{
-        console.log('Data:', res.results)
+       // console.log('Poular Tv Show Data:', res.results)
         return of(res.results.slice(0,count));
       }));
   }
