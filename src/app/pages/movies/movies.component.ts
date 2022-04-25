@@ -11,6 +11,7 @@ import { COMMON } from '../../constants/common';
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   genresName: any;
+  searchValue: any | null = null;
   genreId: string | null = null;
   constructor(
     private route: ActivatedRoute,
@@ -18,21 +19,24 @@ export class MoviesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.route.params.subscribe(({ genreId }) => {
       if (genreId) {
         this.genreId = genreId;
         this.route.queryParams.subscribe((params) => {
-        this.genresName = params['name'];
+          this.genresName = params['name'];
         });
         this.getMoviesByGenre(genreId, 1, COMMON.rows);
       } else {
-        this.genresName="Movies"
-        this.getPageMovie(1, COMMON.rows);
+
+        this.genresName = 'Movies';
+        this.getPagedMovies(1, COMMON.rows);
       }
     });
   }
-  getPageMovie(page: number = 1, count: number) {
-    this.moviesservice.searchMovies(page, count).subscribe((movies) => {
+  getPagedMovies(page: number = 1, count: number,searchKeyword?: string) {
+    this.moviesservice.searchMovies(page, count,searchKeyword).subscribe((movies) => {
+    console.log('data', movies)
       this.movies = movies;
     });
   }
@@ -47,8 +51,20 @@ export class MoviesComponent implements OnInit {
     const pageNumber = event.page + 1;
     if (this.genreId) {
       this.getMoviesByGenre(this.genreId, pageNumber, COMMON.rows);
-    } else {
-      this.getPageMovie(pageNumber, COMMON.rows);
+    }else {
+      if (this.searchValue) {
+        this.getPagedMovies(pageNumber,COMMON.rows, this.searchValue);
+      } else {
+        this.getPagedMovies(pageNumber,COMMON.rows);
+      }
+    }
+
+  }
+  serachChnaged()
+  {
+    if (this.searchValue) {
+
+      this.getPagedMovies(1,COMMON.rows, this.searchValue);
     }
   }
 }

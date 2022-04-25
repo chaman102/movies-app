@@ -1,5 +1,6 @@
 <div class="slider d-flex">
-  <ng-container *ngFor="let item of items; let i = index">
+  <ng-container *ngIf="items">
+  <ng-container  *ngFor="let item of items; let i = index">
     <div class="slide" *ngIf="i == currentSlideIndex" @slideFade>
       <div class="slide-bg">
         <img class="slide-bg-image" [src]="imagesSizes.large + item.backdrop_path" alt="" />
@@ -8,6 +9,32 @@
         <ng-container *ngIf="item.title">
           <h2 class="display-3 text-white">{{ item.title }}</h2>
         </ng-container>
+
+        <div class="meta">
+          <div class="info my-3">
+            <span class="rating ">
+              <span class="app-icon bi bi-star-fill"></span><span class="rating-value">{{ item.vote_average }}</span
+              ><span>/10</span>
+            </span>
+            <span>{{ item.vote_count }}</span>
+            <span>{{ item.release_date | date: 'yyyy' }}</span>
+          </div>
+        </div>
+        <div class="desc d-none d-sm-block mt-3 lead text-white">
+          {{ item.overview }}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-container *ngIf="tvitems">
+  <ng-container  *ngFor="let item of tvitems; let i = index">
+    <div class="slide" *ngIf="i == currentSlideIndex" @slideFade>
+      <div class="slide-bg">
+        <img class="slide-bg-image" [src]="imagesSizes.large + item.backdrop_path" alt="" />
+      </div>
+      <div class="slide-pane">
+
         <ng-container *ngIf="item.name">
         <h2 class="name text-white">{{ item.name }}</h2>
       </ng-container>
@@ -27,4 +54,5 @@
       </div>
     </div>
   </ng-container>
+</ng-container>
 </div>

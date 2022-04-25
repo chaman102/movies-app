@@ -1,8 +1,10 @@
 <ng-container *ngIf="itemData">
   <a routerLink="{{'/movie/'+ itemData.id}}">
   <div class="video-thumb light">
-    <figure class="video-image"> <a href="#">
-      <img class="img-fluid" src="{{imagesSizes.small+itemData.poster_path}}" alt="Image"></a>
+    <figure class="video-image">
+      <a href="#">
+      <img class="img-fluid" src="{{imagesSizes.small+itemData.poster_path}}" title="{{itemData.title}}" alt="{{itemData.title}}">
+    </a>
       <div class="circle-rate">
         <svg class="circle-chart" viewBox="0 0 30 30" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
           <circle class="circle-chart__background" stroke="#2f3439" stroke-width="2" fill="none" cx="15" cy="15" r="14"></circle>

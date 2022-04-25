@@ -16,6 +16,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ImageModule} from 'primeng/image';
 import { TabViewModule } from 'primeng/tabview';
 import {CarouselModule} from 'primeng/carousel';
+import {InputTextModule} from 'primeng/inputtext';
 import { ItemsBannerTvComponent } from './components/items-banner-tv/items-banner-tv.component';
 import { ItemsTvComponent } from './components/items-tv/items-tv.component';
 import { TvshowsComponent } from './pages/tvshows/tvshows.component';
@@ -50,6 +51,7 @@ import { GenresComponent } from './pages/genres/genres.component';
     TabViewModule,
     CarouselModule,
     ImageModule,
+    InputTextModule,
     AppRoutingModule,
   ],
   providers: [],

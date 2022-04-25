@@ -11,6 +11,7 @@ import { COMMON } from '../../constants/common';
 export class TvshowsComponent implements OnInit {
   movies: Tvshow[] = [];
   genresName: any;
+  searchValue: any | null = null;
   genreId: string | null = null;
   constructor( private route: ActivatedRoute,private moviesservice: MoviesService) { }
 
@@ -23,15 +24,15 @@ export class TvshowsComponent implements OnInit {
         });
         this.getTvByGenre(genreId, 1, COMMON.rows);
       } else {
-        this.genresName="Movies"
+        this.genresName="Tv Shows"
         this.getPageTvshows(1, COMMON.rows);
       }
     });
 
   }
-  getPageTvshows(page:number=1,count:number)
+  getPageTvshows(page:number=1,count:number,searchKeyword?: string)
 {
-  this.moviesservice.getPageTvshow(page,count).subscribe(movies=>{
+  this.moviesservice.getPageTvshow(page,count,searchKeyword).subscribe(movies=>{
     this.movies =movies;
   });
 }
@@ -47,7 +48,18 @@ paginate(event:any) {
     if (this.genreId) {
       this.getTvByGenre(this.genreId, pageNumber, COMMON.rows);
     } else {
-      this.getPageTvshows(pageNumber, COMMON.rows);
+      if (this.searchValue) {
+        this.getPageTvshows(pageNumber,COMMON.rows, this.searchValue);
+      } else {
+        this.getPageTvshows(pageNumber,COMMON.rows);
+      }
     }
 }
+serachChnaged()
+  {
+    if (this.searchValue) {
+
+      this.getPageTvshows(1,COMMON.rows, this.searchValue);
+    }
+  }
 }
